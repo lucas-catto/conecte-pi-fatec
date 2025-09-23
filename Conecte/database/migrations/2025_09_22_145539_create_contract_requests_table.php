@@ -22,8 +22,8 @@ return new class extends Migration
             $table->unsignedBigInteger('caregiver_id');
             $table->unsignedBigInteger('contractor_id');
 
-            $table->foreign('caregiver_id')->references('id')->on('users');
-            $table->foreign('contractor_id')->references('id')->on('users');
+            $table->foreign('caregiver_id')->references('id')->on('caregivers');
+            $table->foreign('contractor_id')->references('id')->on('contractors');
 
             $table->timestamps();
         });
