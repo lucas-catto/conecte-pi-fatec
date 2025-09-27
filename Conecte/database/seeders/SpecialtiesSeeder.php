@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Caregiver;
 use App\Models\Specialty;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -38,13 +39,14 @@ class SpecialtiesSeeder extends Seeder
             ]);
         }
 
-        $users = User::where('type', 'caregiver')->get();
+        $caregivers = Caregiver::all();
+        
         $specialties_size = Specialty::count();
 
-        foreach ($users as $key => $user) {
+        foreach ($caregivers as $key => $caregiver) {
 
             for ($i=0; $i < 4; $i++) { 
-                $user->specialties->attach(rand(1, $specialties_size));
+                $caregiver->specialties()->attach(rand(1, $specialties_size));
             }
         }
     }

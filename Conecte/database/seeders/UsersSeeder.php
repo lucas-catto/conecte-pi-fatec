@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Caregiver;
+use App\Models\Contractor;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,14 +18,32 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
+        
+        for ($i=0; $i < 5; $i++) { 
 
-        for ($i=0; $i < 10; $i++) {
-            User::create([
+            $user = User::create([
                 'name' => $faker->userName(),
                 'cpf'  => $this->cpf(),
                 'email' => $faker->unique()->email,
-                'password' => Hash::make('senha123'),
-                'type' => rand(0, 1) == 1 ? 'caregiver' : 'contractor'
+                'password' => Hash::make('senha123')
+            ]);
+
+            Contractor::create([
+                'user_id' => $user->id
+            ]);
+        }
+
+        for ($i=0; $i < 5; $i++) { 
+
+            $user = User::create([
+                'name' => $faker->userName(),
+                'cpf'  => $this->cpf(),
+                'email' => $faker->unique()->email,
+                'password' => Hash::make('senha123')
+            ]);
+
+            Caregiver::create([
+                'user_id' => $user->id
             ]);
         }
     }
