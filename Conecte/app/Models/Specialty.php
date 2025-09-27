@@ -11,8 +11,8 @@ class Specialty extends Model
         'name',
     ];
     
-    public function caregiver(): BelongsToMany
+    public function caregiver(): belongsToMany
     {
-        return $this->belongsToMany(User::class, 'caregiver_id');
+        return $this->belongsToMany(Caregiver::class);
     }
 }

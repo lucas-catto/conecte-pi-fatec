@@ -11,6 +11,8 @@ class ContractRequest extends Model
         'contractor_description',
         'caregiver_response',
         'accepted',
+        'caregiver_id',
+        'contractor_id'
     ];
     
     public function caregiver(): BelongsTo

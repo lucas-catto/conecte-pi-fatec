@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -22,8 +23,7 @@ class User extends Authenticatable
         'name',
         'cpf',
         'email',
-        'password',
-        'type'
+        'password'
     ];
 
     /**
@@ -48,10 +48,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
-    public function specialties(): HasMany
+
+    public function caregiver(): HasOne
     {
-        return $this->hasMany(Specialty::class);
+        return $this->hasOne(Caregiver::class);
     }
-    
+
+    public function contractor(): HasOne
+    {
+        return $this->hasOne(Contractor::class);
+    }
 }
